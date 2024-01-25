@@ -6,30 +6,47 @@ import PatientDetails from "./components/pages/patient/PatientDetail";
 import PatientSignUp from "./components/pages/signup/PatientSignUp";
 import SelectDoctor from "./components/pages/patient/selectDoctor/SelectDoctor";
 import "./App.css";
+import moment from "moment";
 
 // Route to spesific page
 const pathToDutyPage = "/duty-page";
 const pathToPatientPage = "/patient-list";
 
-const telephoneNumber = "021 555 5555";
-
-// Make each text for the Duty page
-const homepages = [
-  { text: <h1>Welcome to AMS GPs</h1> },
-  { text: <h2>We are: </h2> },
-  { text: <h2>To make an appointment</h2> },
-  { text: <h2>Call: </h2> },
-];
-
-const commonTexts = homepages.map((homepage) => homepage.text.props);
+const welcomeText = "Welcome to AMS GPs";
+const weAre = "We are: ";
+const appointmentText = "To make an appointment";
+const callText = "Call: 021 555 5555";
+const whoIsDutyText = "Who is on duty?";
 
 function App() {
+  let currentMoment = moment().format("HH:mm");
+  let currentTime = parseFloat(currentMoment);
+
+  const openTime = 8;
+  const closeTime = 20;
+
+  const openingTime = () => {
+    if (openTime < currentTime && currentTime < closeTime) {
+      return "Open";
+    } else {
+      return "Closed";
+    }
+  };
+
   return (
     <div className="App">
       <Routes>
         <Route
           path={"/"}
-          element={<Homepage telephoneNumber={telephoneNumber} />}
+          element={
+            <Homepage
+              welcomeText={welcomeText}
+              weAre={weAre}
+              callText={callText}
+              appointmentText={appointmentText}
+              openingTime={openingTime}
+            />
+          }
         />
         <Route
           path={pathToPatientPage}
@@ -42,9 +59,11 @@ function App() {
           path={pathToDutyPage}
           element={
             <Dutypage
-              telephoneNumber={telephoneNumber}
-              singleText={"Who is on duty?"}
-              commonTexts={commonTexts}
+              weAre={weAre}
+              appointmentText={appointmentText}
+              callText={callText}
+              whoIsDutyText={whoIsDutyText}
+              openingTime={openingTime}
             />
           }
         />
