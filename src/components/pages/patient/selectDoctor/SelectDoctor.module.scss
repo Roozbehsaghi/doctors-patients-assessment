@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.doctor-box {
+  display: flex;
+  width: 65vw;
+  justify-content: center;
+  align-items: center;
+}
+
+.doctor {
+  width: 30vw;
+  height: 6vh;
+}
+
+.box {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100vw;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.patient {
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+  height: 30vh;
+  justify-content: center;
+  align-items: flex-start;
+  border: 1px solid gray;
+}
+
+.parag {
+  margin-left: 40px;
+}
