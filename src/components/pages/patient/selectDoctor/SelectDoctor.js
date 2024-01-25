@@ -80,8 +80,8 @@ const SelectDoctor = () => {
           <div className={styles.box}>
             {patientsOfSelectedDoctor.map((patient, index) => (
               <div key={index} className={styles.patient}>
-                <p className={styles.parag}>FirstName: {patient.firstName}</p>
-                <p className={styles.parag}>LastName: {patient.lastName}</p>
+                <p className={styles.parag}>First Name: {patient.firstName}</p>
+                <p className={styles.parag}>Last Name: {patient.lastName}</p>
                 <p className={styles.parag}>ID: {patient.id}</p>
                 <p className={styles.parag}>
                   Date Of Birth: {patient.dateOfBirth}
