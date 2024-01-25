@@ -64,7 +64,7 @@ const SelectDoctor = () => {
       {selectedDoctorId && (
         <div>
           {selectedDoctorId === "all-doctors" && (
-            <h2>Patients of Doctor All Doctors </h2>
+            <h2>Patients of all the Doctors </h2>
           )}
 
           {doctorData.find((doctor) => doctor.id == selectedDoctorId) && (
