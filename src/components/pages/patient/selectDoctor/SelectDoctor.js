@@ -22,16 +22,11 @@ const SelectDoctor = () => {
     error: doctorError,
   } = useFetch(doctorDataApiUrl);
 
-  if (patientLoading || doctorLoading) return <div>Loading...</div>;
+  if (patientLoading || doctorLoading) return <h1>Loading...</h1>;
   if (patientError)
-    return <div>Error fetching patient data: {patientError.message}</div>;
+    return <h1>Error fetching patient data: {patientError.message}</h1>;
   if (doctorError)
-    return <div>Error fetching doctor data: {doctorError.message}</div>;
-
-  // Handle change in doctor selection
-  const handleDoctorChange = (event) => {
-    setSelectedDoctorId(event.target.value);
-  };
+    return <h1>Error fetching doctor data: {doctorError.message}</h1>;
 
   // Get patients for the selected doctor
   const patientsOfSelectedDoctor =
@@ -46,9 +41,9 @@ const SelectDoctor = () => {
       <div className={styles["doctor-box"]}>
         <Select
           className={styles.doctor}
-          onChange={handleDoctorChange}
           value={selectedDoctorId}
           doctorData={doctorData}
+          setSelectedDoctorId={setSelectedDoctorId}
         />
       </div>
       <Patient

@@ -1,13 +1,18 @@
 import React from "react";
 
-const Select = ({ className, onChange, value, doctorData }) => {
+const Select = ({ className, value, doctorData, setSelectedDoctorId }) => {
+  // Handle change in doctor selection
+  const handleDoctorChange = (event) => {
+    setSelectedDoctorId(event.target.value);
+  };
+
   return (
     <select
       id="doctor"
       name="doctor"
       className={className}
       autoComplete="doctor"
-      onChange={onChange}
+      onChange={(e) => handleDoctorChange(e)}
       value={value}
     >
       {doctorData.map((doctor, index) => (
