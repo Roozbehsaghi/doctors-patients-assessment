@@ -7,20 +7,27 @@ const Patient = ({
   patientsOfSelectedDoctor,
   classNamepatient,
   classNameParag,
+  allDoctors,
 }) => {
   return (
     <div>
       {/* Display patients for the selected doctor */}
       {selectedDoctorId && (
         <div>
-          {selectedDoctorId === "all-doctors" && (
+          {selectedDoctorId === allDoctors && (
             <h2>Patients of all the Doctors </h2>
           )}
 
-          {doctorData.find((doctor) => doctor.id == selectedDoctorId) && (
+          {doctorData.find(
+            (doctor) => doctor.id === parseFloat(selectedDoctorId)
+          ) && (
             <h2>
               {` Patients of   
-          ${doctorData.find((doctor) => doctor.id == selectedDoctorId).dogtor}`}
+          ${
+            doctorData.find(
+              (doctor) => doctor.id === parseFloat(selectedDoctorId)
+            ).dogtor
+          }`}
             </h2>
           )}
 

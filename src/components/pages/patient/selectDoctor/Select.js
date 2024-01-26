@@ -1,6 +1,12 @@
 import React from "react";
 
-const Select = ({ className, value, doctorData, setSelectedDoctorId }) => {
+const Select = ({
+  className,
+  value,
+  doctorData,
+  setSelectedDoctorId,
+  allDoctors,
+}) => {
   // Handle change in doctor selection
   const handleDoctorChange = (event) => {
     setSelectedDoctorId(event.target.value);
@@ -21,7 +27,7 @@ const Select = ({ className, value, doctorData, setSelectedDoctorId }) => {
         </option>
       ))}
 
-      <option value="all-doctors">All Doctors</option>
+      <option value={allDoctors}>All Doctors</option>
     </select>
   );
 };

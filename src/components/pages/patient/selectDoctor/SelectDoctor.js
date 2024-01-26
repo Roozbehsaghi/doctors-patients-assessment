@@ -5,8 +5,14 @@ import { patientDataApiUrl, doctorDataApiUrl } from "../../../data/url";
 import Select from "./Select";
 import Patient from "./Patient";
 
+const allDoctors = "all-doctors";
+
 const SelectDoctor = () => {
   const [selectedDoctorId, setSelectedDoctorId] = useState("");
+
+  const parseSelectedDoctorId = allDoctors
+    ? selectedDoctorId
+    : parseInt(selectedDoctorId);
 
   // Fetch patient data
   const {
@@ -30,9 +36,11 @@ const SelectDoctor = () => {
 
   // Get patients for the selected doctor
   const patientsOfSelectedDoctor =
-    selectedDoctorId === "all-doctors"
+    parseSelectedDoctorId === allDoctors
       ? patientData
-      : patientData.filter((patient) => patient.dogtorId == selectedDoctorId);
+      : patientData.filter(
+          (patient) => patient.dogtorId === parseInt(selectedDoctorId)
+        );
 
   return (
     <div className={styles.container}>
@@ -41,18 +49,20 @@ const SelectDoctor = () => {
       <div className={styles["doctor-box"]}>
         <Select
           className={styles.doctor}
-          value={selectedDoctorId}
+          value={parseSelectedDoctorId}
           doctorData={doctorData}
           setSelectedDoctorId={setSelectedDoctorId}
+          allDoctors={allDoctors}
         />
       </div>
       <Patient
-        selectedDoctorId={selectedDoctorId}
+        selectedDoctorId={parseSelectedDoctorId}
         doctorData={doctorData}
         classNamebox={styles.box}
         patientsOfSelectedDoctor={patientsOfSelectedDoctor}
         classNamepatient={styles.patient}
         classNameParag={styles.parag}
+        allDoctors={allDoctors}
       />
     </div>
   );
