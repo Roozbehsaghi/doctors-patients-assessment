@@ -19,7 +19,7 @@ const callText = "Call: 021 555 5555";
 const whoIsDutyText = "Who is on duty?";
 
 function App() {
-  let currentMoment = moment().format("HH:mm");
+  let currentMoment = moment().format("HH");
   let currentTime = parseFloat(currentMoment);
 
   const openTime = 8;

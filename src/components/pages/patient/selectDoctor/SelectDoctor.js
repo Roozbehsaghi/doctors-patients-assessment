@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styles from "./SelectDoctor.module.scss";
 import useFetch from "../../../data/useFetch";
 import { patientDataApiUrl, doctorDataApiUrl } from "../../../data/url";
+import Select from "./Select";
+import Patient from "./Patient";
 
 const SelectDoctor = () => {
   const [selectedDoctorId, setSelectedDoctorId] = useState("");
@@ -42,55 +44,21 @@ const SelectDoctor = () => {
       <h1>Patient Database</h1>
 
       <div className={styles["doctor-box"]}>
-        <select
-          id="doctor"
-          name="doctor"
+        <Select
           className={styles.doctor}
-          autoComplete="doctor"
           onChange={handleDoctorChange}
           value={selectedDoctorId}
-        >
-          {doctorData.map((doctor, index) => (
-            <option key={index} value={doctor.id}>
-              {doctor.dogtor}
-            </option>
-          ))}
-
-          <option value="all-doctors">All Doctors</option>
-        </select>
+          doctorData={doctorData}
+        />
       </div>
-
-      {/* Display patients for the selected doctor */}
-      {selectedDoctorId && (
-        <div>
-          {selectedDoctorId === "all-doctors" && (
-            <h2>Patients of all the Doctors </h2>
-          )}
-
-          {doctorData.find((doctor) => doctor.id == selectedDoctorId) && (
-            <h2>
-              {` Patients of   
-              ${
-                doctorData.find((doctor) => doctor.id == selectedDoctorId)
-                  .dogtor
-              }`}
-            </h2>
-          )}
-
-          <div className={styles.box}>
-            {patientsOfSelectedDoctor.map((patient, index) => (
-              <div key={index} className={styles.patient}>
-                <p className={styles.parag}>First Name: {patient.firstName}</p>
-                <p className={styles.parag}>Last Name: {patient.lastName}</p>
-                <p className={styles.parag}>ID: {patient.id}</p>
-                <p className={styles.parag}>
-                  Date Of Birth: {patient.dateOfBirth}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
+      <Patient
+        selectedDoctorId={selectedDoctorId}
+        doctorData={doctorData}
+        classNamebox={styles.box}
+        patientsOfSelectedDoctor={patientsOfSelectedDoctor}
+        classNamepatient={styles.patient}
+        classNameParag={styles.parag}
+      />
     </div>
   );
 };
