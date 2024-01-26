@@ -21,7 +21,7 @@ const Select = ({
       onChange={(e) => handleDoctorChange(e)}
       value={value}
     >
-      <option value={allDoctors}>Select a Doctor</option>
+      <option value="select-doctor">Select a Doctor</option>
       {doctorData.map((doctor, index) => (
         <option key={index} value={doctor.id}>
           {doctor.dogtor}
